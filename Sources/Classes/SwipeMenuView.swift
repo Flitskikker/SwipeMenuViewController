@@ -221,7 +221,11 @@ open class SwipeMenuView: UIView {
         return dataSource?.numberOfPages(in: self) ?? 0
     }
 
-    fileprivate var isJumping: Bool = false
+    fileprivate var isJumping: Bool = false {
+        didSet {
+            tabView?.isUserInteractionEnabled = !isJumping
+        }
+    }
     fileprivate var isPortrait: Bool = true
 
     /// The index of the front page in `SwipeMenuView` (read only).
