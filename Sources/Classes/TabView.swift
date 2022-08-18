@@ -37,7 +37,7 @@ open class TabView: UIScrollView {
 
     fileprivate let containerView: UIStackView = UIStackView()
 
-    fileprivate var additionView: UIView = .init()
+    public var additionView: UIView = .init()
 
     fileprivate var currentIndex: Int = 0
 
@@ -79,7 +79,7 @@ open class TabView: UIScrollView {
         layoutIfNeeded()
     }
 
-    fileprivate func focus(on target: UIView, animated: Bool = true) {
+    public func focus(on target: UIView, animated: Bool = true) {
 
         if options.style == .segmented { return }
 
@@ -329,7 +329,7 @@ open class TabView: UIScrollView {
         }
     }
 
-    private func updateSelectedItem(by newIndex: Int) {
+    public func updateSelectedItem(by newIndex: Int) {
         for (i, itemView) in itemViews.enumerated() {
             itemView.isSelected = i == newIndex
         }
@@ -338,7 +338,7 @@ open class TabView: UIScrollView {
 
 // MARK: - AdditionView
 
-extension TabView {
+public extension TabView {
 
     public enum Direction {
         case forward
@@ -399,7 +399,7 @@ extension TabView {
         jump(to: currentIndex)
     }
 
-    private func updateAdditionViewPosition(index: Int) {
+    public func updateAdditionViewPosition(index: Int) {
         guard let target = currentItem else { return }
 
         additionView.frame.origin.x = target.frame.origin.x + options.additionView.padding.left
@@ -412,7 +412,7 @@ extension TabView {
         focus(on: target)
     }
 
-    fileprivate func resetAdditionViewPosition(index: Int) {
+    public func resetAdditionViewPosition(index: Int) {
         guard options.style == .segmented,
             let dataSource = dataSource,
             dataSource.numberOfItems(in: self) > 0 else { return }
@@ -427,7 +427,7 @@ extension TabView {
         additionView.frame.size.width = adjustCellWidth
     }
 
-    fileprivate func animateAdditionView(index: Int, animated: Bool, completion: ((Bool) -> Swift.Void)? = nil) {
+    public func animateAdditionView(index: Int, animated: Bool, completion: ((Bool) -> Swift.Void)? = nil) {
 
         update(index)
 
@@ -475,7 +475,7 @@ extension TabView {
     }
 }
 
-extension TabView {
+public extension TabView {
     var currentItem: TabItemView? {
         return currentIndex < itemViews.count ? itemViews[currentIndex] : nil
     }
@@ -510,7 +510,7 @@ extension TabView {
 
 // MARK: - GestureRecognizer
 
-extension TabView {
+public extension TabView {
 
     fileprivate var tapGestureRecognizer: UITapGestureRecognizer {
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapItemView(_:)))
@@ -535,7 +535,7 @@ extension TabView {
         tabViewDelegate?.tabView(self, didSelectTabAt: index)
     }
 
-    private func moveTabItem(index: Int, animated: Bool) {
+    public func moveTabItem(index: Int, animated: Bool) {
 
         switch options.addition {
         case .underline, .circle:
