@@ -214,6 +214,7 @@ open class TabView: UIScrollView {
             let tabItemView = TabItemView(frame: CGRect(x: xPosition, y: 0, width: options.itemView.width, height: containerView.frame.size.height))
             tabItemView.translatesAutoresizingMaskIntoConstraints = false
             tabItemView.clipsToBounds = options.clipsToBounds
+            tabItemView.isExclusiveTouch = true
             if let title = dataSource.tabView(self, titleForItemAt: index) {
                 tabItemView.titleLabel.text = title
                 tabItemView.titleLabel.font = options.itemView.font
