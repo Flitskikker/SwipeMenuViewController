@@ -475,7 +475,7 @@ public extension TabView {
     }
 }
 
-public extension TabView {
+extension TabView {
     var currentItem: TabItemView? {
         return currentIndex < itemViews.count ? itemViews[currentIndex] : nil
     }
